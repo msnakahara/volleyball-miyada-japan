@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minami Alps Volleyball Club — United by Volleyball, Connected by Friendship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16324F;
+    --navy-deep:#0E2438;
+    --sand:#F3ECD8;
+    --sand-line:#E2D6B2;
+    --gold:#E8A33D;
+    --gold-dark:#C77F1F;
+    --red:#C1272D;
+    --ink:#241C15;
+    --ink-soft:#4B4235;
+    --white:#FFFDF8;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+  }
+  body.lang-ja{ font-family:'Noto Sans JP', sans-serif; }
+  body.lang-ja .display{ font-family:'Noto Sans JP', sans-serif; font-weight:900; letter-spacing:0; }
+
+  /* language visibility */
+  .en, .ja{ display:none; }
+  body.lang-en .en{ display:inherit; }
+  body.lang-ja .ja{ display:inherit; }
+  body.lang-en span.en, body.lang-en div.en, body.lang-en li.en, body.lang-en p.en, body.lang-en td.en{ display:block; }
+  body.lang-en li.en{ display:list-item; }
+  body.lang-ja li.ja{ display:list-item; }
+  body.lang-en span.en{ display:inline; }
+  body.lang-ja span.ja{ display:inline; }
+
+  .display{ font-family:'Anton', sans-serif; letter-spacing:.5px; }
+
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(22,50,79,.94);
+    backdrop-filter:blur(6px);
+    color:var(--white);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .mark{ display:flex; align-items:center; gap:10px; }
+  .mark .ball{
+    width:26px;height:26px;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, #fff, var(--gold) 55%, var(--gold-dark) 100%);
+    position:relative; flex:none;
+  }
+  .mark .ball::before, .mark .ball::after{
+    content:""; position:absolute; border:1.4px solid rgba(36,28,21,.55); border-radius:50%;
+  }
+  .mark .ball::before{ inset:2px 8px; }
+  .mark .ball::after{ inset:8px 2px; }
+  .mark-name{ font-family:'Anton',sans-serif; font-size:17px; letter-spacing:.5px; }
+  body.lang-ja .mark-name{ font-family:'Noto Sans JP',sans-serif; font-weight:900; font-size:15px; }
+
+  nav.links{ display:flex; gap:22px; flex-wrap:wrap; font-size:13.5px; font-weight:600; }
+  nav.links a{ text-decoration:none; opacity:.86; white-space:nowrap; }
+  nav.links a:hover{ opacity:1; color:var(--gold); }
+
+  .lang-switch{ display:flex; border:1px solid rgba(255,255,255,.4); border-radius:20px; overflow:hidden; flex:none; }
+  .lang-switch button{
+    background:transparent; border:none; color:var(--white); font:inherit; font-weight:700;
+    font-size:12.5px; padding:7px 14px; cursor:pointer; letter-spacing:.3px;
+  }
+  .lang-switch button.active{ background:var(--gold); color:var(--navy-deep); }
+
+  @media (max-width:820px){
+    nav.links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:var(--white); position:relative; overflow:hidden;
+    padding:76px 0 0;
+  }
+  .hero-inner{
+    max-width:1080px; margin:0 auto; padding:0 28px 40px;
+    display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center;
+  }
+  @media (max-width:860px){ .hero-inner{ grid-template-columns:1fr; } }
+
+  .eyebrow-tag{
+    display:inline-block; font-size:12.5px; font-weight:700; letter-spacing:.4px;
+    color:var(--gold); border-left:3px solid var(--gold); padding-left:10px; margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(40px,6vw,64px); line-height:1.02; margin:0 0 20px; color:var(--white);
+  }
+  .hero h1 .accent{ color:var(--gold); }
+  .hero .tagline{ font-size:19px; color:var(--sand); opacity:.92; margin:0 0 22px; max-width:46ch; }
+  .hero .intro{ font-size:15.5px; color:#D9E0E7; max-width:56ch; margin:0 0 30px; }
+
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-block; padding:13px 24px; border-radius:2px; font-weight:700; font-size:14px;
+    text-decoration:none; letter-spacing:.2px; cursor:pointer; border:2px solid transparent;
+  }
+  .btn-solid{ background:var(--gold); color:var(--navy-deep); }
+  .btn-solid:hover{ background:#fff; }
+  .btn-outline{ border-color:rgba(255,255,255,.55); color:var(--white); }
+  .btn-outline:hover{ border-color:var(--gold); color:var(--gold); }
+
+  /* court/net illustration */
+  .court-art{
+    aspect-ratio:4/5; border:2px dashed rgba(255,255,255,.28); border-radius:4px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:14px; padding:22px; position:relative;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(255,255,255,.05) 39px 40px),
+      linear-gradient(160deg, #1C3E60, #0E2438);
+  }
+  .court-art .net-line{
+    position:absolute; left:0; right:0; top:38%; height:2px;
+    background:repeating-linear-gradient(90deg, rgba(255,255,255,.55) 0 8px, transparent 8px 16px);
+  }
+  .court-art .post{ position:absolute; top:20%; bottom:20%; width:3px; background:rgba(255,255,255,.35); }
+  .court-art .post.l{ left:14%; } .court-art .post.r{ right:14%; }
+  .court-art .ball-big{
+    width:64px; height:64px; border-radius:50%; position:relative; z-index:2;
+    background:radial-gradient(circle at 34% 28%, #fff, var(--gold) 55%, var(--gold-dark) 100%);
+    box-shadow:0 12px 24px rgba(0,0,0,.35);
+  }
+  .court-art .ball-big::before, .court-art .ball-big::after{
+    content:""; position:absolute; border:1.6px solid rgba(36,28,21,.5); border-radius:50%;
+  }
+  .court-art .ball-big::before{ inset:5px 20px; }
+  .court-art .ball-big::after{ inset:20px 5px; }
+  .court-art .cap{
+    font-size:12px; color:rgba(255,255,255,.6); text-align:center; max-width:22ch; z-index:2;
+    letter-spacing:.2px;
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{ padding:78px 0; }
+  section.alt{ background:var(--white); }
+  .kicker{ font-size:12.5px; font-weight:700; color:var(--gold-dark); letter-spacing:.4px; margin-bottom:10px; }
+  h2.section-title{ font-size:clamp(28px,4vw,40px); margin:0 0 34px; color:var(--navy-deep); max-width:18ch; }
+  .divider{
+    display:flex; align-items:center; gap:10px; margin:0 0 46px; opacity:.65;
+  }
+  .divider .line{ flex:1; height:1px; background:var(--sand-line); }
+  .divider .dot{ width:7px;height:7px;border-radius:50%; background:var(--gold-dark); }
+
+  /* ---------- ABOUT ---------- */
+  .about-block{ max-width:70ch; margin:0 0 46px; }
+  .about-block h3{ font-size:20px; color:var(--navy); margin:0 0 12px; }
+  .about-block p{ font-size:15.5px; color:var(--ink-soft); margin:0 0 8px; }
+  .pull{
+    border-left:3px solid var(--red); padding:4px 0 4px 20px; font-size:18px;
+    color:var(--navy-deep); font-style:normal; max-width:56ch; margin:40px 0;
+  }
+
+  /* ---------- GOALS ---------- */
+  .goals-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px 40px; }
+  @media (max-width:700px){ .goals-grid{ grid-template-columns:1fr; } }
+  .goal-item{ display:flex; gap:12px; padding:14px 0; border-top:1px solid var(--sand-line); font-size:14.8px; color:var(--ink-soft); }
+  .goal-item:nth-last-child(-n+1), .goal-item:nth-last-child(-n+2){ }
+  .goal-item .sq{ width:8px; height:8px; margin-top:6px; background:var(--gold-dark); flex:none; }
+
+  /* ---------- VALUES ---------- */
+  .values-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--sand-line); border:1px solid var(--sand-line); }
+  @media (max-width:760px){ .values-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:480px){ .values-grid{ grid-template-columns:1fr; } }
+  .value-card{ background:var(--white); padding:28px 24px; }
+  .value-card h4{ margin:0 0 8px; color:var(--navy-deep); font-size:17px; }
+  .value-card p{ margin:0; font-size:14px; color:var(--ink-soft); }
+
+  /* ---------- SCHEDULE ---------- */
+  .schedule-note{
+    background:#FBF4E1; border:1px solid var(--sand-line); padding:12px 16px; font-size:13.5px;
+    color:var(--ink-soft); margin-bottom:26px;
+  }
+  table.sched{ width:100%; border-collapse:collapse; font-size:14.5px; }
+  table.sched th{ text-align:left; padding:12px 10px; border-bottom:2px solid var(--navy-deep); color:var(--navy-deep); font-size:12.5px; }
+  table.sched td{ padding:14px 10px; border-bottom:1px solid var(--sand-line); color:var(--ink-soft); }
+
+  /* ---------- JOIN STEPS ---------- */
+  .steps{ display:flex; flex-direction:column; gap:0; }
+  .step{ display:grid; grid-template-columns:52px 1fr; gap:18px; padding:22px 0; border-top:1px solid rgba(255,255,255,.14); }
+  .step:last-child{ border-bottom:1px solid rgba(255,255,255,.14); }
+  .step .num{ font-family:'Anton',sans-serif; font-size:30px; color:var(--gold); }
+  body.lang-ja .step .num{ font-family:'Noto Sans JP',sans-serif; font-weight:900; }
+  .step h4{ margin:0 0 6px; color:var(--white); font-size:16.5px; }
+  .step p{ margin:0; color:#CBD5DE; font-size:14.5px; max-width:56ch; }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  @media (max-width:760px){ .gallery-grid{ grid-template-columns:repeat(2,1fr); } }
+  .gtile{
+    aspect-ratio:1; background:linear-gradient(150deg,#1C3E60,#EADFC0);
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .gtile span{ font-size:11px; color:rgba(36,28,21,.55); text-align:center; padding:0 10px; }
+  .gtile .mini-ball{ width:22px;height:22px;border-radius:50%; background:radial-gradient(circle at 34% 28%, #fff, var(--gold) 60%, var(--gold-dark) 100%); position:absolute; top:10px; left:10px; }
+  .gtile img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .gtile.has-photo{ align-items:flex-end; justify-content:flex-start; }
+  .gtile.has-photo::after{ content:""; position:absolute; inset:auto 0 0 0; height:55%; background:linear-gradient(0deg, rgba(14,36,56,.75), transparent); }
+  .gtile.has-photo span{ position:relative; z-index:2; color:var(--white); text-align:left; padding:0 10px 10px; font-weight:600; }
+  .gtile.has-photo{ background:#000; }
+  .gtile.has-photo img{ width:100%; height:100%; object-fit:cover; }
+  .gtile-caption{
+    position:absolute; left:0; right:0; bottom:0; padding:8px 10px 6px;
+    background:linear-gradient(0deg, rgba(0,0,0,.72), rgba(0,0,0,0));
+  }
+  .gtile-caption span{ color:#fff; text-align:left; padding:0; font-weight:600; }
+
+  /* ---------- NEWS ---------- */
+  .news-list{ display:flex; flex-direction:column; gap:0; }
+  .news-item{ display:grid; grid-template-columns:90px 1fr; gap:22px; padding:22px 0; border-top:1px solid var(--sand-line); }
+  .news-item:last-child{ border-bottom:1px solid var(--sand-line); }
+  .news-item .date{ font-size:12.5px; color:var(--gold-dark); font-weight:700; }
+  .news-item h4{ margin:0 0 6px; font-size:16px; color:var(--navy-deep); }
+  .news-item p{ margin:0; font-size:14px; color:var(--ink-soft); }
+  .news-item img{ width:100%; max-width:280px; aspect-ratio:16/10; object-fit:cover; border-radius:4px; margin-bottom:12px; display:block; }
+  .news-tagnote{ font-size:12.5px; color:var(--ink-soft); opacity:.75; margin-top:30px; }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{ background:var(--navy-deep); color:#CBD5DE; padding:64px 0 30px; }
+  .contact-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:50px; }
+  @media (max-width:760px){ .contact-grid{ grid-template-columns:1fr; } }
+  footer h2.section-title{ color:var(--white); }
+  .contact-line{ font-size:15px; margin:0 0 10px; }
+  .contact-line .lbl{ color:var(--gold); font-weight:700; display:inline-block; min-width:110px; }
+  .foot-bottom{ margin-top:56px; padding-top:22px; border-top:1px solid rgba(255,255,255,.14); font-size:12.5px; opacity:.6; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+
+  .placeholder-tag{
+    display:inline-block; font-size:11px; font-weight:700; color:var(--red); border:1px solid var(--red);
+    padding:2px 8px; border-radius:12px; margin-bottom:10px; letter-spacing:.2px;
+  }
+
+  /* ---------- ADMIN (compact) ---------- */
+  #admin-fab{
+    position:fixed; right:16px; bottom:16px; z-index:200; width:40px; height:40px; border-radius:50%;
+    background:var(--navy-deep); color:var(--white); border:none; font-size:17px; cursor:pointer; opacity:.55;
+  }
+  #admin-fab:hover{ opacity:1; }
+  #admin-modal{
+    display:none; position:fixed; inset:0; z-index:300; background:rgba(14,36,56,.65);
+    align-items:center; justify-content:center; padding:20px;
+  }
+  #admin-modal.open{ display:flex; }
+  #admin-box{
+    background:var(--white); width:min(760px,100%); max-height:88vh; overflow:auto; border-radius:6px; padding:22px;
+    font-family:'Inter','Noto Sans JP',sans-serif; color:var(--ink); font-size:13.5px;
+  }
+  #admin-box h3{ margin:0 0 14px; color:var(--navy-deep); font-size:16px; }
+  #admin-box input, #admin-box textarea{
+    width:100%; padding:8px 9px; border:1px solid var(--sand-line); border-radius:4px; font:inherit; font-size:13px;
+  }
+  #admin-box textarea{ min-height:44px; resize:vertical; }
+  #admin-box label{ font-size:11.5px; font-weight:700; color:var(--ink-soft); display:block; margin:8px 0 3px; }
+  #admin-tabs{ display:flex; flex-wrap:wrap; gap:6px; margin:14px 0; }
+  #admin-tabs button{ font-size:11.5px; padding:6px 10px; border:1px solid var(--sand-line); background:var(--white); border-radius:4px; cursor:pointer; }
+  #admin-tabs button.active{ background:var(--navy-deep); color:#fff; border-color:var(--navy-deep); }
+  .admin-row{ border:1px solid var(--sand-line); border-radius:5px; padding:10px; margin-bottom:10px; background:#FCFAF3; }
+  .admin-row-head{ display:flex; justify-content:space-between; font-size:11px; color:var(--gold-dark); font-weight:700; }
+  .admin-row-head button{ color:var(--red); background:none; border:none; cursor:pointer; font-size:11px; font-weight:700; }
+  #admin-actions{ display:flex; justify-content:space-between; gap:10px; margin-top:16px; }
+  #admin-status{ font-size:12.5px; margin-top:10px; min-height:16px; }
+</style>
+</head>
+<body class="lang-en">
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="mark">
+      <div class="ball"></div>
+      <div class="mark-name">
+        <span class="en" data-bind="clubname">Minami Alps Volleyball Club</span>
+        <span class="ja" data-bind="clubname">南アルプスバレーボールクラブ</span>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#home"><span class="en" data-bind="nav-home">Home</span><span class="ja" data-bind="nav-home">ホーム</span></a>
+      <a href="#about"><span class="en" data-bind="nav-about">About Us</span><span class="ja" data-bind="nav-about">私たちについて</span></a>
+      <a href="#schedule"><span class="en" data-bind="nav-schedule">Schedule &amp; Events</span><span class="ja" data-bind="nav-schedule">スケジュール・イベント</span></a>
+      <a href="#join"><span class="en" data-bind="nav-join">Join Us</span><span class="ja" data-bind="nav-join">参加する</span></a>
+      <a href="#gallery"><span class="en" data-bind="nav-gallery">Gallery</span><span class="ja" data-bind="nav-gallery">ギャラリー</span></a>
+      <a href="#news"><span class="en" data-bind="nav-news">News</span><span class="ja" data-bind="nav-news">ニュース</span></a>
+      <a href="#contact"><span class="en" data-bind="nav-contact">Contact</span><span class="ja" data-bind="nav-contact">お問い合わせ</span></a>
+    </nav>
+    <div class="lang-switch">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-ja" onclick="setLang('ja')">日本語</button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO / HOME ================= -->
+<section class="hero" id="home" style="padding-bottom:0;">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow-tag en" data-bind="location">Miyada, Nagano, Japan</span>
+      <span class="eyebrow-tag ja" data-bind="location">日本・長野県宮田村</span>
+      <h1 class="display">
+        <span class="en">UNITED BY<br>VOLLEYBALL,<br><span class="accent">CONNECTED</span> BY FRIENDSHIP</span>
+        <span class="ja">バレーボールで<span class="accent">一つに</span>、<br>友情でつながる</span>
+      </h1>
+      <p class="tagline en" data-bind="tagline">A Filipino-organized volleyball community welcoming players of every background in Nagano.</p>
+      <p class="tagline ja" data-bind="tagline">長野を拠点に活動する、フィリピン人主体のバレーボールコミュニティ。あらゆる背景の方を歓迎します。</p>
+      <p class="intro en" data-bind="herointro">We are a Filipino-organized volleyball community dedicated to bringing people together through sport, friendship, and a shared passion for the game. While rooted in Filipino camaraderie and culture, our club welcomes volleyball enthusiasts from diverse backgrounds who wish to connect, play, and grow together in a supportive and inclusive environment.</p>
+      <p class="intro ja" data-bind="herointro">私たちはフィリピン人が中心となって運営するバレーボールコミュニティです。スポーツ、友情、そしてバレーボールへの情熱を通じて人々を結びつけることを目指しています。フィリピンの温かい仲間意識を土台としながらも、様々な背景を持つバレーボール愛好者を歓迎し、支え合いのある開かれた環境の中で共につながり、プレーし、成長していける場所です。</p>
+      <div class="cta-row">
+        <a href="#join" class="btn btn-solid en">Join a session</a>
+        <a href="#join" class="btn btn-solid ja">参加してみる</a>
+        <a href="#about" class="btn btn-outline en">Our story</a>
+        <a href="#about" class="btn btn-outline ja">私たちについて</a>
+      </div>
+    </div>
+    <div class="court-art">
+      <div class="post l"></div><div class="post r"></div>
+      <div class="net-line"></div>
+      <div class="ball-big"></div>
+      <div class="cap en">Team photo placeholder — swap in your favorite match-day picture here.</div>
+      <div class="cap ja">チーム写真の掲載スペースです。お気に入りの試合写真に差し替えてください。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="alt" id="about">
+  <div class="wrap">
+    <div class="kicker en">About Us</div>
+    <div class="kicker ja">私たちについて</div>
+    <h2 class="section-title en">Who we are, and how we started</h2>
+    <h2 class="section-title ja">私たちの歩みと、大切にしていること</h2>
+
+    <div class="about-block" id="ab-ourstory">
+      <h3 class="en">Our Story</h3>
+      <h3 class="ja">私たちのストーリー</h3>
+      <p class="en">Our volleyball community began as a Filipino-led initiative with a simple yet meaningful goal: to bring people together through a shared passion for volleyball, friendship, and an active lifestyle.</p>
+      <p class="en">What started as a small group of volleyball enthusiasts gradually developed into a growing community of people who enjoy coming together not only to play, but also to connect, share experiences, and create lasting memories.</p>
+      <p class="en">Over the years, the group has continued to grow through regular volleyball sessions, social gatherings, outings, and other activities that allow members to build genuine friendships beyond the court.</p>
+      <p class="en">Today, we continue to build upon that foundation by creating a welcoming and inclusive community where people from different backgrounds can enjoy volleyball, experience new things together, and create memories that extend far beyond the game itself.</p>
+      <p class="ja">私たちのバレーボールコミュニティは、フィリピン人有志によって始まりました。目的はシンプルでありながら意義深いもの――バレーボールへの情熱、友情、そしてアクティブなライフスタイルを通じて人々を結びつけることでした。</p>
+      <p class="ja">最初はバレーボール好きの小さなグループでしたが、やがてプレーするだけでなく、つながり、経験を分かち合い、思い出を積み重ねる仲間の輪へと成長していきました。</p>
+      <p class="ja">定期的なバレーボールの練習や交流会、外出などの活動を重ねる中で、メンバーはコートの外でも本物の友情を育んできました。</p>
+      <p class="ja">今日も私たちは、その土台の上に、異なる背景を持つ人々がバレーボールを楽しみ、新しい経験を分かち合い、ゲームそのものを超えた思い出を作れる、温かく開かれたコミュニティづくりを続けています。</p>
+    </div>
+
+    <div class="about-block" id="ab-whoweare">
+      <h3 class="en">Who We Are</h3>
+      <h3 class="ja">私たちについて</h3>
+      <p class="en">We are a community-driven volleyball club based in Miyada, Nagano Prefecture, Japan, bringing together individuals who share a genuine passion for volleyball, friendship, and an active lifestyle.</p>
+      <p class="en">While volleyball remains at the heart of our community, our purpose goes beyond the game. We believe that a great community is built through shared experiences — whether on the court, during outings, at social gatherings, or simply through the friendships formed along the way.</p>
+      <p class="en">We value teamwork, camaraderie, mutual respect, inclusivity, and personal growth. Our goal is to create an environment where members can enjoy the sport, meet new people, experience different activities, and create meaningful memories together.</p>
+      <p class="ja">私たちは長野県を拠点に活動する、コミュニティ主体のバレーボールクラブです。バレーボール、友情、そしてアクティブなライフスタイルへの純粋な情熱を持つ人々が集まっています。</p>
+      <p class="ja">バレーボールは私たちの活動の中心にありますが、目的はゲームそのものにとどまりません。コート上でのプレーはもちろん、外出や交流会など、共有された経験を通じて素晴らしいコミュニティは築かれると信じています。</p>
+      <p class="ja">私たちはチームワーク、仲間意識、相互の敬意、多様性の受け入れ、そして個人の成長を大切にしています。メンバーがスポーツを楽しみ、新しい人と出会い、様々な活動を経験し、共に意味のある思い出を作れる環境をつくることが目標です。</p>
+    </div>
+
+    <p class="pull en" id="ab-pullquote-en">"The strongest communities are built not only through a shared interest, but through the moments, laughter, and memories people create together."</p>
+    <p class="pull ja" id="ab-pullquote-ja">「最も強いコミュニティは、共通の関心事だけでなく、人々が共に作り上げる瞬間や笑顔、思い出によって築かれます。」</p>
+
+    <div class="about-block" id="ab-community">
+      <h3 class="en">Our Community</h3>
+      <h3 class="ja">私たちのコミュニティ</h3>
+      <p class="en">Our community is more than a group of people who come together to play volleyball. It is a space where individuals from different backgrounds can connect, exchange experiences, enjoy one another's company, and develop friendships beyond the volleyball court.</p>
+      <p class="en">Through volleyball sessions, outings, social gatherings, celebrations, and other shared activities, we encourage our members to make the most of their time together and create experiences worth remembering.</p>
+      <p class="ja">私たちのコミュニティは、単にバレーボールをするために集まる人々の集団ではありません。異なる背景を持つ人々がつながり、経験を分かち合い、互いの存在を楽しみ、コートの外でも友情を育める場所です。</p>
+      <p class="ja">バレーボールの練習、外出、交流会、お祝いごとなど様々な活動を通じて、メンバー同士が共に過ごす時間を大切にし、心に残る経験を作ることを大切にしています。</p>
+    </div>
+
+    <div class="about-block" id="ab-whocanjoin">
+      <h3 class="en">Who Can Join</h3>
+      <h3 class="ja">参加対象</h3>
+      <p class="en">Our club welcomes volleyball enthusiasts of all backgrounds and nationalities. Whether you are an experienced player, someone returning to volleyball after a long break, or simply looking for a welcoming community where you can meet new people, you are invited to come play, connect, and grow with us on the court.</p>
+      <p class="ja">私たちのクラブは、あらゆる背景・国籍のバレーボール愛好者を歓迎しています。経験豊富な選手の方も、久しぶりにバレーボールを再開する方も、新しい人々と出会える温かいコミュニティを探している方も、ぜひコートで私たちと一緒にプレーし、つながり、成長していきましょう。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VISION / MISSION / PURPOSE ================= -->
+<section id="vision-mission">
+  <div class="wrap">
+    <div class="kicker en">Vision &amp; Mission</div>
+    <div class="kicker ja">ビジョンとミッション</div>
+    <h2 class="section-title en">What we're playing for</h2>
+    <h2 class="section-title ja">私たちが目指すもの</h2>
+
+    <div class="about-block" id="vm-vision">
+      <h3 class="en">Vision</h3>
+      <h3 class="ja">ビジョン</h3>
+      <p class="en">To build a welcoming and inclusive volleyball community where people from different backgrounds can come together through sports, friendship, and shared passion for volleyball.</p>
+      <p class="ja">国籍や文化的背景の異なる人々が、バレーボールを通じて集い、友情と情熱を分かち合える、温かく開かれたバレーボールコミュニティを築くこと。</p>
+    </div>
+    <div class="about-block" id="vm-mission">
+      <h3 class="en">Mission</h3>
+      <h3 class="ja">ミッション</h3>
+      <p class="en">To provide a positive and supportive environment where volleyball enthusiasts of all backgrounds and skill levels can enjoy the sport, develop their skills, build meaningful friendships, and strengthen connections within the community.</p>
+      <p class="ja">あらゆる背景・レベルのバレーボール愛好者が安心して競技を楽しみ、技術を磨き、かけがえのない友情を育み、コミュニティとのつながりを深められる、前向きで支え合える環境を提供すること。</p>
+    </div>
+    <div class="about-block" id="vm-purpose">
+      <h3 class="en">Our Purpose</h3>
+      <h3 class="ja">私たちの目的</h3>
+      <p class="en">Our purpose is to bring people together through volleyball. We aim to create a community where everyone can enjoy the sport, connect with others, and feel welcome regardless of nationality, background, or playing experience.</p>
+      <p class="ja">私たちの目的は、バレーボールを通じて人々をつなぐことです。国籍や経歴、経験の有無にかかわらず、誰もがスポーツを楽しみ、人とつながり、心から歓迎されていると感じられるコミュニティをつくることを目指しています。</p>
+    </div>
+
+    <div class="divider"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
+
+    <div class="kicker en">Our Goals</div>
+    <div class="kicker ja">私たちの目標</div>
+    <div class="goals-grid">
+      <div class="goal-item"><div class="sq"></div><span class="en">Promote volleyball and an active lifestyle within the community.</span><span class="ja">地域社会にバレーボールとアクティブなライフスタイルを広める。</span></div>
+      <div class="goal-item"><div class="sq"></div><span class="en">Provide opportunities for players to practice, compete, and improve their skills.</span><span class="ja">選手が練習し、試合に挑み、技術を向上させる機会を提供する。</span></div>
+      <div class="goal-item"><div class="sq"></div><span class="en">Bring people from different backgrounds together through volleyball.</span><span class="ja">様々な背景を持つ人々をバレーボールで結びつける。</span></div>
+      <div class="goal-item"><div class="sq"></div><span class="en">Create opportunities for friendship, teamwork, and cultural exchange.</span><span class="ja">友情、チームワーク、異文化交流の機会を生み出す。</span></div>
+      <div class="goal-item"><div class="sq"></div><span class="en">Encourage sportsmanship, respect, and positive team spirit.</span><span class="ja">スポーツマンシップ、敬意、前向きなチームスピリットを育む。</span></div>
+      <div class="goal-item"><div class="sq"></div><span class="en">Organize regular practices, friendly matches, tournaments, and community activities.</span><span class="ja">定期的な練習、親善試合、大会、地域活動を開催する。</span></div>
+      <div class="goal-item"><div class="sq"></div><span class="en">Grow and develop the club while maintaining a welcoming atmosphere for everyone.</span><span class="ja">誰もが安心して参加できる雰囲気を保ちながら、クラブを成長させる。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VALUES ================= -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker en">Core Values</div>
+    <div class="kicker ja">コアバリュー</div>
+    <h2 class="section-title en">What we play by</h2>
+    <h2 class="section-title ja">私たちが大切にすること</h2>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="values-grid">
+      <div class="value-card">
+        <h4 class="en">Teamwork</h4><h4 class="ja">チームワーク</h4>
+        <p class="en">We work together and support one another on and off the court.</p>
+        <p class="ja">コート内外で互いに支え合い、共に取り組みます。</p>
+      </div>
+      <div class="value-card">
+        <h4 class="en">Friendship</h4><h4 class="ja">友情</h4>
+        <p class="en">We value the relationships and connections that grow through volleyball.</p>
+        <p class="ja">バレーボールを通じて育まれる人とのつながりを大切にします。</p>
+      </div>
+      <div class="value-card">
+        <h4 class="en">Inclusivity</h4><h4 class="ja">受け入れる心</h4>
+        <p class="en">We welcome people from different backgrounds who share a passion for volleyball.</p>
+        <p class="ja">情熱を共有するあらゆる背景の人々を歓迎します。</p>
+      </div>
+      <div class="value-card">
+        <h4 class="en">Respect</h4><h4 class="ja">敬意</h4>
+        <p class="en">We treat teammates, opponents, organizers, and the community with respect.</p>
+        <p class="ja">チームメイト、対戦相手、運営者、地域の皆様に敬意を持って接します。</p>
+      </div>
+      <div class="value-card">
+        <h4 class="en">Sportsmanship</h4><h4 class="ja">スポーツマンシップ</h4>
+        <p class="en">We play with fairness, integrity, humility, and a positive attitude.</p>
+        <p class="ja">公正さ、誠実さ、謙虚さ、前向きな姿勢でプレーします。</p>
+      </div>
+      <div class="value-card">
+        <h4 class="en">Community</h4><h4 class="ja">コミュニティ</h4>
+        <p class="en">We strive to build meaningful connections and contribute positively to the local community.</p>
+        <p class="ja">意味あるつながりを築き、地域社会に貢献できるよう努めます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCHEDULE & EVENTS ================= -->
+<section id="schedule">
+  <div class="wrap">
+    <div class="kicker en">Schedule &amp; Events</div>
+    <div class="kicker ja">スケジュール・イベント</div>
+    <h2 class="section-title en">Where to find us this week</h2>
+    <h2 class="section-title ja">今週の活動予定</h2>
+
+    <div class="schedule-note">
+      <span class="placeholder-tag en">Sample — update with real details</span>
+      <span class="placeholder-tag ja">仮のスケジュールです — 実際の内容に差し替えてください</span><br>
+      <span class="en">Add your actual practice days, times, gym name, and event dates here.</span>
+      <span class="ja">実際の練習曜日・時間・体育館名・イベント日程をここに入力してください。</span>
+    </div>
+
+    <table class="sched" id="sched-table">
+      <tr>
+        <th><span class="en">Day</span><span class="ja">曜日</span></th>
+        <th><span class="en">Time</span><span class="ja">時間</span></th>
+        <th><span class="en">Activity</span><span class="ja">内容</span></th>
+        <th><span class="en">Location</span><span class="ja">場所</span></th>
+      </tr>
+      <tr>
+        <td><span class="en">Saturday</span><span class="ja">土曜日</span></td>
+        <td>18:00–20:00</td>
+        <td><span class="en">Open practice</span><span class="ja">オープン練習</span></td>
+        <td><span class="en">Miyada Village Gymnasium</span><span class="ja">宮田村総合体育館</span></td>
+      </tr>
+      <tr>
+        <td><span class="en">Sunday</span><span class="ja">日曜日</span></td>
+        <td>10:00–12:00</td>
+        <td><span class="en">Friendly matches</span><span class="ja">親善試合</span></td>
+        <td><span class="en">Miyada Village Gymnasium</span><span class="ja">宮田村総合体育館</span></td>
+      </tr>
+      <tr>
+        <td><span class="en">Monthly</span><span class="ja">月1回</span></td>
+        <td><span class="en">TBA</span><span class="ja">未定</span></td>
+        <td><span class="en">Community gathering</span><span class="ja">交流会</span></td>
+        <td><span class="en">TBA</span><span class="ja">未定</span></td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= JOIN US ================= -->
+<section id="join" style="background:var(--navy-deep); color:var(--white);">
+  <div class="wrap">
+    <div class="kicker en" style="color:var(--gold);">Join Us</div>
+    <div class="kicker ja" style="color:var(--gold);">参加する</div>
+    <h2 class="section-title en" style="color:var(--white);">Getting on the court is easy</h2>
+    <h2 class="section-title ja" style="color:var(--white);">参加はとても簡単です</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div>
+          <h4 class="en">Reach out</h4><h4 class="ja">まずはご連絡ください</h4>
+          <p class="en">Message us through the contact details below to say hello and ask any questions.</p>
+          <p class="ja">下記の連絡先からお気軽にメッセージをお送りください。ご質問も歓迎します。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div>
+          <h4 class="en">Come try a session</h4><h4 class="ja">練習に参加してみる</h4>
+          <p class="en">Join one of our open practices — no experience or equipment required, just come as you are.</p>
+          <p class="ja">まずはオープン練習にお越しください。経験や道具は不要です。気軽にご参加いただけます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div>
+          <h4 class="en">Become part of the community</h4><h4 class="ja">仲間の一員になる</h4>
+          <p class="en">Keep coming back, meet the members, and take part in matches, outings, and gatherings.</p>
+          <p class="ja">継続して参加し、メンバーと交流しながら、試合や外出、交流会にも参加してみましょう。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="alt" id="gallery">
+  <div class="wrap">
+    <div class="kicker en">Gallery</div>
+    <div class="kicker ja">ギャラリー</div>
+    <h2 class="section-title en">Moments from the court</h2>
+    <h2 class="section-title ja">コートでの思い出</h2>
+    <span class="placeholder-tag en">Placeholder tiles — replace with real photos</span>
+    <span class="placeholder-tag ja">写真のプレースホルダーです — 実際の写真に差し替えてください</span>
+    <div class="gallery-grid" style="margin-top:20px;">
+      <div class="gtile"><div class="mini-ball"></div><span class="en">Match day</span><span class="ja">試合の日</span></div>
+      <div class="gtile"><div class="mini-ball"></div><span class="en">Practice</span><span class="ja">練習風景</span></div>
+      <div class="gtile"><div class="mini-ball"></div><span class="en">Team outing</span><span class="ja">チームでの外出</span></div>
+      <div class="gtile"><div class="mini-ball"></div><span class="en">Celebration</span><span class="ja">お祝いの様子</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWS ================= -->
+<section id="news">
+  <div class="wrap">
+    <div class="kicker en">News</div>
+    <div class="kicker ja">ニュース</div>
+    <h2 class="section-title en">Latest from the club</h2>
+    <h2 class="section-title ja">最新のお知らせ</h2>
+
+    <div class="news-list">
+      <div class="news-item">
+        <div class="date en">SAMPLE</div><div class="date ja">サンプル</div>
+        <div>
+          <h4 class="en">Welcoming new members this season</h4>
+          <h4 class="ja">今シーズンも新メンバーを募集中</h4>
+          <p class="en">Replace this with your latest announcement, recruitment update, or tournament result.</p>
+          <p class="ja">最新のお知らせ、募集情報、大会結果などに差し替えてご利用ください。</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="date en">SAMPLE</div><div class="date ja">サンプル</div>
+        <div>
+          <h4 class="en">Upcoming community gathering</h4>
+          <h4 class="ja">交流会の開催予定</h4>
+          <p class="en">Add details about your next outing or social event here.</p>
+          <p class="ja">次回の外出や交流イベントの詳細をここに追加してください。</p>
+        </div>
+      </div>
+    </div>
+    <p class="news-tagnote en">These are sample posts — update this section as your club shares news.</p>
+    <p class="news-tagnote ja">上記はサンプル投稿です。実際のお知らせに合わせて更新してください。</p>
+  </div>
+</section>
+
+<!-- ================= CONTACT / FOOTER ================= -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="kicker en" style="color:var(--gold);">Contact</div>
+    <div class="kicker ja" style="color:var(--gold);">お問い合わせ</div>
+    <h2 class="section-title en">Let's play together</h2>
+    <h2 class="section-title ja">一緒にプレーしましょう</h2>
+
+    <div class="contact-grid">
+      <div>
+        <p class="contact-line"><span class="lbl en">Location</span><span class="lbl ja">場所</span><span class="en" data-bind="location">Miyada Village, Nagano Prefecture, Japan</span><span class="ja" data-bind="location">日本・長野県宮田村</span></p>
+        <p class="contact-line"><span class="lbl en">Email</span><span class="lbl ja">メール</span><span data-bind-any="email">hello@minamialpsvc.example</span></p>
+        <p class="contact-line"><span class="lbl en">Social</span><span class="lbl ja">SNS</span><span data-bind-any="social">@minamialpsvc</span></p>
+        <p style="font-size:13px; opacity:.65; margin-top:18px;" class="en">Contact details above are placeholders — please update with your real email and social handles.</p>
+        <p style="font-size:13px; opacity:.65; margin-top:18px;" class="ja">上記の連絡先は仮の情報です。実際のメールアドレスやSNSアカウントに差し替えてください。</p>
+      </div>
+      <div>
+        <p class="contact-line en">Whether you're picking up a volleyball for the first time or you've played your whole life, there's a place for you on our court.</p>
+        <p class="contact-line ja">バレーボールを始めたばかりの方も、長年プレーしてきた方も、私たちのコートにはあなたの居場所があります。</p>
+        <a href="#join" class="btn btn-solid en" style="margin-top:10px;">Join us</a>
+        <a href="#join" class="btn btn-solid ja" style="margin-top:10px;">参加する</a>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span class="en" data-bind="copyright">© Minami Alps Volleyball Club. Club name and details are placeholders — customize freely.</span>
+      <span class="ja" data-bind="copyright">© 南アルプスバレーボールクラブ。クラブ名・詳細は仮のものです。自由に編集してください。</span>
+      <span class="en" data-bind="tagline">United by Volleyball, Connected by Friendship</span>
+      <span class="ja" data-bind="tagline">バレーボールで一つに、友情でつながる</span>
+      <a href="#" id="admin-link" onclick="openAdmin();return false;" style="opacity:.3;font-size:11px;">⚙</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ===== Admin overlay (compact, hidden by default) ===== -->
+<div id="admin-overlay" style="display:none;position:fixed;inset:0;background:rgba(14,36,56,.92);z-index:200;overflow:auto;">
+  <div style="max-width:720px;margin:40px auto;background:var(--white);border-radius:6px;padding:20px;font-family:'Noto Sans JP',sans-serif;color:var(--ink);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <strong id="admin-title" style="font-size:15px;color:var(--navy-deep);">Site Admin</strong>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span style="display:flex;border:1px solid var(--sand-line);border-radius:14px;overflow:hidden;">
+          <button onclick="setAdminLang('en')" id="admin-lang-en" style="border:none;background:var(--navy-deep);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;cursor:pointer;">EN</button>
+          <button onclick="setAdminLang('ja')" id="admin-lang-ja" style="border:none;background:transparent;color:var(--ink-soft);font-size:11px;font-weight:700;padding:4px 10px;cursor:pointer;">日本語</button>
+        </span>
+        <a href="#" onclick="closeAdmin();return false;" id="admin-close" style="font-size:13px;color:var(--ink-soft);">Close ✕</a>
+      </div>
+    </div>
+
+    <div id="admin-login">
+      <input type="password" id="admin-pw" placeholder="Admin password" style="width:100%;padding:8px;border:1px solid var(--sand-line);border-radius:4px;margin-bottom:8px;">
+      <button onclick="adminLogin()" id="admin-login-btn" style="background:var(--gold);color:var(--navy-deep);border:none;border-radius:4px;padding:9px 16px;font-weight:700;cursor:pointer;">Log in</button>
+    </div>
+
+    <div id="admin-body" style="display:none;">
+      <select id="admin-sheet" onchange="renderAdminTab(this.value)" style="width:100%;padding:7px;margin-bottom:14px;border:1px solid var(--sand-line);border-radius:4px;"></select>
+      <div id="admin-fields"></div>
+      <div style="display:flex;gap:8px;margin-top:14px;">
+        <button onclick="addAdminRow()" id="admin-add" style="background:transparent;border:1px solid var(--sand-line);border-radius:4px;padding:8px 14px;cursor:pointer;">＋ Add row</button>
+        <button onclick="saveAdminTab()" id="admin-save-btn" style="background:var(--gold);color:var(--navy-deep);border:none;border-radius:4px;padding:8px 16px;font-weight:700;cursor:pointer;">Save</button>
+      </div>
+    </div>
+    <p id="admin-msg" style="font-size:12.5px;margin-top:12px;"></p>
+  </div>
+</div>
+
+<script>
+  function setLang(lang){
+    document.body.classList.remove('lang-en','lang-ja');
+    document.body.classList.add('lang-'+lang);
+    document.getElementById('btn-en').classList.toggle('active', lang==='en');
+    document.getElementById('btn-ja').classList.toggle('active', lang==='ja');
+    document.documentElement.setAttribute('lang', lang);
+  }
+
+  /* ============ Apps Script data source (single fetch, public read + admin write) ============ */
+  const SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE';
+  const KV_SHEETS = { 'Site Info':'Field', 'Navigation':'Menu Item', 'About Us':'Block', 'Vision Mission':'Field' };
+  const SHEET_NAMES = ['Site Info','Navigation','About Us','Vision Mission','Goals','Values','Schedule','Join Steps','Gallery','News'];
+  let allData = {};
+  let adminPassword = '';
+
+  async function fetchAllData(){
+    const res = await fetch(SCRIPT_URL);
+    if (!res.ok) throw new Error('fetch failed');
+    allData = await res.json();
+  }
+  const fetchSheet = name => allData[name] || [];
+
+  function bindField(key, en, ja){
+    document.querySelectorAll(`[data-bind="${CSS.escape(key)}"].en`).forEach(el => el.textContent = en);
+    document.querySelectorAll(`[data-bind="${CSS.escape(key)}"].ja`).forEach(el => el.textContent = ja);
+  }
+  function bindAny(key, val){
+    document.querySelectorAll(`[data-bind-any="${CSS.escape(key)}"]`).forEach(el => el.textContent = val);
+  }
+  function renderParagraphs(id, en, ja){
+    const el = document.getElementById(id); if (!el) return;
+    el.querySelectorAll('p.en, p.ja').forEach(p => p.remove());
+    const mk = (c,t) => { const p = document.createElement('p'); p.className = c; p.textContent = t; return p; };
+    en.split(/\n\n+/).forEach(s => { if (s.trim()) el.appendChild(mk('en', s.trim())); });
+    ja.split(/\n\n+/).forEach(s => { if (s.trim()) el.appendChild(mk('ja', s.trim())); });
+  }
+
+  function syncSiteInfo(){
+    const map = { 'Club name':'clubname','Tagline':'tagline','Location':'location','Hero intro':'herointro','Copyright / footer line':'copyright' };
+    fetchSheet('Site Info').forEach(r => {
+      const key = map[r.Field];
+      if (key) bindField(key, r.English, r.Japanese);
+      if (r.Field === 'Email') bindAny('email', r.English);
+      if (r.Field === 'Social handle') bindAny('social', r.English);
+    });
+  }
+  function syncNavigation(){
+    const map = { 'Home':'nav-home','About Us':'nav-about','Schedule & Events':'nav-schedule','Join Us':'nav-join','Gallery':'nav-gallery','News':'nav-news','Contact':'nav-contact' };
+    fetchSheet('Navigation').forEach(r => { const k = map[r['Menu Item']]; if (k) bindField(k, r.English, r.Japanese); });
+  }
+  function syncAboutUs(){
+    const map = { 'Our Story':'ab-ourstory','Who We Are':'ab-whoweare','Our Community':'ab-community','Who Can Join':'ab-whocanjoin' };
+    fetchSheet('About Us').forEach(r => {
+      if (r.Block === 'Pull quote'){
+        const en = document.getElementById('ab-pullquote-en'), ja = document.getElementById('ab-pullquote-ja');
+        if (en) en.textContent = r.English; if (ja) ja.textContent = r.Japanese;
+      } else { const id = map[r.Block]; if (id) renderParagraphs(id, r.English, r.Japanese); }
+    });
+  }
+  function syncVisionMission(){
+    const map = { 'Vision':'vm-vision','Mission':'vm-mission','Our Purpose':'vm-purpose' };
+    fetchSheet('Vision Mission').forEach(r => { const id = map[r.Field]; if (id) renderParagraphs(id, r.English, r.Japanese); });
+  }
+  function syncGoals(){
+    const rows = fetchSheet('Goals'); const grid = document.querySelector('.goals-grid');
+    if (!grid || !rows.length) return; grid.innerHTML = '';
+    rows.sort((a,b)=>parseInt(a['#'])-parseInt(b['#'])).forEach(r => {
+      const d = document.createElement('div'); d.className = 'goal-item';
+      d.innerHTML = `<div class="sq"></div><span class="en">${r.English}</span><span class="ja">${r.Japanese}</span>`;
+      grid.appendChild(d);
+    });
+  }
+  function syncValues(){
+    const rows = fetchSheet('Values'); const grid = document.querySelector('.values-grid');
+    if (!grid || !rows.length) return; grid.innerHTML = '';
+    rows.forEach(r => {
+      const d = document.createElement('div'); d.className = 'value-card';
+      d.innerHTML = `<h4 class="en">${r['Value (EN)']}</h4><h4 class="ja">${r['Value (JA)']}</h4><p class="en">${r['Description (EN)']}</p><p class="ja">${r['Description (JA)']}</p>`;
+      grid.appendChild(d);
+    });
+  }
+  function syncSchedule(){
+    const rows = fetchSheet('Schedule'); const table = document.getElementById('sched-table');
+    if (!table || !rows.length) return;
+    table.querySelectorAll('tr:not(:first-child)').forEach(tr => tr.remove());
+    rows.forEach(r => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td><span class="en">${r['Day (EN)']}</span><span class="ja">${r['Day (JA)']}</span></td><td>${r.Time}</td><td><span class="en">${r['Activity (EN)']}</span><span class="ja">${r['Activity (JA)']}</span></td><td><span class="en">${r['Location (EN)']}</span><span class="ja">${r['Location (JA)']}</span></td>`;
+      table.appendChild(tr);
+    });
+  }
+  function syncJoinSteps(){
+    const rows = fetchSheet('Join Steps'); const c = document.querySelector('.steps');
+    if (!c || !rows.length) return; c.innerHTML = '';
+    rows.sort((a,b)=>parseInt(a.Step)-parseInt(b.Step)).forEach(r => {
+      const d = document.createElement('div'); d.className = 'step';
+      d.innerHTML = `<div class="num">${r.Step}</div><div><h4 class="en">${r['Title (EN)']}</h4><h4 class="ja">${r['Title (JA)']}</h4><p class="en">${r['Description (EN)']}</p><p class="ja">${r['Description (JA)']}</p></div>`;
+      c.appendChild(d);
+    });
+  }
+  function syncGallery(){
+    const rows = fetchSheet('Gallery'); const grid = document.querySelector('.gallery-grid');
+    if (!grid || !rows.length) return; grid.innerHTML = '';
+    rows.forEach(r => {
+      const d = document.createElement('div');
+      const videoUrl = (r['Video URL'] || '').trim();
+      const imgUrl = (r['Image URL'] || '').trim();
+      if (videoUrl){
+        d.className = 'gtile has-photo';
+        d.innerHTML = `<video src="${videoUrl}" muted loop autoplay playsinline onerror="this.parentElement.classList.remove('has-photo');this.remove();"></video><div class="gtile-caption"><span class="en">${r['Caption (EN)']}</span><span class="ja">${r['Caption (JA)']}</span></div>`;
+      } else if (imgUrl){
+        d.className = 'gtile has-photo';
+        d.innerHTML = `<img src="${imgUrl}" alt="" loading="lazy" onerror="this.parentElement.classList.remove('has-photo');this.remove();"><div class="gtile-caption"><span class="en">${r['Caption (EN)']}</span><span class="ja">${r['Caption (JA)']}</span></div>`;
+      } else {
+        d.className = 'gtile';
+        d.innerHTML = `<div class="mini-ball"></div><span class="en">${r['Caption (EN)']}</span><span class="ja">${r['Caption (JA)']}</span>`;
+      }
+      grid.appendChild(d);
+    });
+  }
+  function syncNews(){
+    const rows = fetchSheet('News'); const list = document.querySelector('.news-list');
+    if (!list || !rows.length) return; list.innerHTML = '';
+    rows.forEach(r => {
+      const d = document.createElement('div'); d.className = 'news-item';
+      const videoUrl = (r['Video URL'] || '').trim();
+      const imgUrl = (r['Image URL'] || '').trim();
+      const media = videoUrl
+        ? `<video src="${videoUrl}" controls style="width:100%;max-width:280px;border-radius:4px;margin-bottom:12px;display:block;" onerror="this.remove()"></video>`
+        : (imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" onerror="this.remove()">` : '');
+      d.innerHTML = `<div><div class="date en">${r['Date/Tag']}</div><div class="date ja">${r['Date/Tag']}</div></div><div>${media}<h4 class="en">${r['Title (EN)']}</h4><h4 class="ja">${r['Title (JA)']}</h4><p class="en">${r['Body (EN)']}</p><p class="ja">${r['Body (JA)']}</p></div>`;
+      list.appendChild(d);
+    });
+  }
+
+  async function syncFromSheet(){
+    try { await fetchAllData(); } catch(err){ console.warn('Sheet sync failed:', err); return; }
+    [syncSiteInfo, syncNavigation, syncAboutUs, syncVisionMission, syncGoals, syncValues, syncSchedule, syncJoinSteps, syncGallery, syncNews]
+      .forEach(fn => { try { fn(); } catch(e){ console.warn(e); } });
+  }
+  syncFromSheet();
+
+  /* ============ Compact admin panel (same page, EN/JA) ============ */
+  let adminSheet = null;
+  let adminLang = 'en';
+
+  const SHEET_LABELS = {
+    'Site Info':    { en:'Site Info',        ja:'サイト基本情報' },
+    'Navigation':   { en:'Navigation',       ja:'ナビゲーション' },
+    'About Us':     { en:'About Us',         ja:'私たちについて' },
+    'Vision Mission':{ en:'Vision & Mission', ja:'ビジョン・ミッション' },
+    'Goals':        { en:'Goals',            ja:'目標' },
+    'Values':       { en:'Values',           ja:'コアバリュー' },
+    'Schedule':     { en:'Schedule',         ja:'スケジュール' },
+    'Join Steps':   { en:'Join Steps',       ja:'参加ステップ' },
+    'Gallery':      { en:'Gallery',          ja:'ギャラリー' },
+    'News':         { en:'News',             ja:'ニュース' }
+  };
+  const ADMIN_T = {
+    title:       { en:'Site Admin', ja:'サイト管理' },
+    close:       { en:'Close ✕', ja:'閉じる ✕' },
+    pwPlaceholder:{ en:'Admin password', ja:'管理者パスワード' },
+    login:       { en:'Log in', ja:'ログイン' },
+    addRow:      { en:'＋ Add row', ja:'＋ 行追加' },
+    save:        { en:'Save', ja:'保存' },
+    row:         { en:'Row', ja:'行' },
+    delete:      { en:'Delete', ja:'削除' },
+    saving:      { en:'Saving…', ja:'保存中…' },
+    saved:       { en:'Saved. Reload the page to see it live.', ja:'保存しました。ページを再読み込みすると反映されます。' },
+    saveFail:    { en:'Save failed: ', ja:'保存失敗: ' },
+    unknownErr:  { en:'unknown error', ja:'不明なエラー' },
+    uploading:   { en:'Uploading…', ja:'アップロード中…' },
+    uploadDone:  { en:'Done ✓', ja:'完了 ✓' },
+    uploadFail:  { en:'Upload failed: ', ja:'アップロード失敗: ' }
+  };
+  const t = key => ADMIN_T[key][adminLang];
+
+  function setAdminLang(lang){
+    adminLang = lang;
+    document.getElementById('admin-lang-en').style.background = lang === 'en' ? 'var(--navy-deep)' : 'transparent';
+    document.getElementById('admin-lang-en').style.color = lang === 'en' ? '#fff' : 'var(--ink-soft)';
+    document.getElementById('admin-lang-ja').style.background = lang === 'ja' ? 'var(--navy-deep)' : 'transparent';
+    document.getElementById('admin-lang-ja').style.color = lang === 'ja' ? '#fff' : 'var(--ink-soft)';
+    document.getElementById('admin-title').textContent = t('title');
+    document.getElementById('admin-close').textContent = t('close');
+    document.getElementById('admin-pw').placeholder = t('pwPlaceholder');
+    document.getElementById('admin-login-btn').textContent = t('login');
+    document.getElementById('admin-add').textContent = t('addRow');
+    document.getElementById('admin-save-btn').textContent = t('save');
+    if (adminSheet) renderAdminTab(adminSheet);
+  }
+
+  function openAdmin(){ document.getElementById('admin-overlay').style.display = 'block'; }
+  function closeAdmin(){ document.getElementById('admin-overlay').style.display = 'none'; }
+
+  async function adminLogin(){
+    adminPassword = document.getElementById('admin-pw').value;
+    if (!Object.keys(allData).length){ try { await fetchAllData(); } catch(e){} }
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-body').style.display = 'block';
+    const sel = document.getElementById('admin-sheet');
+    sel.innerHTML = SHEET_NAMES.map(n => `<option value="${n}">${SHEET_LABELS[n][adminLang]}</option>`).join('');
+    renderAdminTab(SHEET_NAMES[0]);
+  }
+
+  function adminFieldHTML(label, value, idx, key){
+    const long = (value || '').length > 60;
+    const safe = (value || '').replace(/</g,'&lt;');
+    const isMedia = /URL$/i.test(key.trim());
+    const fieldId = `field-${idx}-${key.replace(/[^a-zA-Z0-9]/g,'_')}`;
+    let inner;
+    if (isMedia){
+      inner = `<input type="text" id="${fieldId}" data-row="${idx}" data-key="${key}" value="${safe}" placeholder="https://..." style="width:100%;padding:6px;border:1px solid var(--sand-line);border-radius:4px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-top:5px;">
+          <input type="file" accept="image/*,video/*" onchange="uploadAdminFile(this,'${fieldId}')" style="font-size:11px;flex:1;">
+          <span class="upload-status" style="font-size:11px;color:var(--ink-soft);"></span>
+        </div>`;
+    } else if (long){
+      inner = `<textarea data-row="${idx}" data-key="${key}" rows="3" style="width:100%;padding:6px;border:1px solid var(--sand-line);border-radius:4px;">${safe}</textarea>`;
+    } else {
+      inner = `<input type="text" data-row="${idx}" data-key="${key}" value="${safe}" style="width:100%;padding:6px;border:1px solid var(--sand-line);border-radius:4px;">`;
+    }
+    return `<div style="margin-bottom:8px;"><label style="font-size:11.5px;font-weight:700;color:var(--ink-soft);display:block;">${label}</label>${inner}</div>`;
+  }
+
+  function fileToBase64(file){
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function uploadAdminFile(inputEl, fieldId){
+    const file = inputEl.files[0];
+    if (!file) return;
+    const statusEl = inputEl.nextElementSibling;
+    statusEl.textContent = t('uploading');
+    try{
+      const base64 = await fileToBase64(file);
+      const res = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ password: adminPassword, action: 'upload', filename: file.name, mimeType: file.type, dataBase64: base64 })
+      });
+      const data = await res.json();
+      if (data.ok){
+        const target = document.getElementById(fieldId);
+        if (target) target.value = data.url;
+        statusEl.textContent = t('uploadDone');
+      } else {
+        statusEl.textContent = t('uploadFail') + (data.error || t('unknownErr'));
+      }
+    } catch(err){
+      statusEl.textContent = t('uploadFail') + err.message;
+    }
+  }
+
+  function renderAdminTab(name){
+    adminSheet = name;
+    const sel = document.getElementById('admin-sheet');
+    sel.innerHTML = SHEET_NAMES.map(n => `<option value="${n}">${SHEET_LABELS[n][adminLang]}</option>`).join('');
+    sel.value = name;
+    const rows = allData[name] || [];
+    const container = document.getElementById('admin-fields');
+    container.innerHTML = '';
+    const isList = !KV_SHEETS[name];
+    document.getElementById('admin-add').style.display = isList ? 'inline-block' : 'none';
+
+    rows.forEach((row, idx) => {
+      const box = document.createElement('div');
+      box.style.cssText = 'border:1px solid var(--sand-line);border-radius:6px;padding:12px;margin-bottom:10px;';
+      const titleKey = KV_SHEETS[name];
+      let html = '';
+      if (titleKey) html += `<strong style="font-size:13px;color:var(--navy-deep);">${row[titleKey]}</strong>`;
+      else html += `<div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:var(--gold-dark);font-weight:700;">${t('row')} ${idx+1}</span><a href="#" onclick="deleteAdminRow(${idx});return false;" style="font-size:11px;color:var(--red);">${t('delete')}</a></div>`;
+      Object.keys(row).forEach(k => { if (k !== titleKey) html += adminFieldHTML(k, row[k], idx, k); });
+      box.innerHTML = html;
+      container.appendChild(box);
+    });
+  }
+
+  function collectAdminRows(){
+    const rows = allData[adminSheet] || [];
+    document.querySelectorAll('#admin-fields [data-row]').forEach(el => {
+      const idx = parseInt(el.dataset.row), key = el.dataset.key;
+      if (rows[idx]) rows[idx][key] = el.value;
+    });
+    return rows;
+  }
+
+  function addAdminRow(){
+    collectAdminRows();
+    const rows = allData[adminSheet] || [];
+    const headers = rows.length ? Object.keys(rows[0]) : [];
+    const blank = {}; headers.forEach(h => blank[h] = '');
+    rows.push(blank); allData[adminSheet] = rows;
+    renderAdminTab(adminSheet);
+  }
+  function deleteAdminRow(idx){
+    collectAdminRows();
+    allData[adminSheet].splice(idx, 1);
+    renderAdminTab(adminSheet);
+  }
+
+  async function saveAdminTab(){
+    const rows = collectAdminRows();
+    const msg = document.getElementById('admin-msg');
+    msg.textContent = t('saving'); msg.style.color = 'var(--ink-soft)';
+    try{
+      const res = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ password: adminPassword, sheet: adminSheet, rows })
+      });
+      const data = await res.json();
+      if (data.ok){ msg.textContent = t('saved'); msg.style.color = '#2A6B2E'; }
+      else { msg.textContent = t('saveFail') + (data.error || t('unknownErr')); msg.style.color = 'var(--red)'; }
+    } catch(err){ msg.textContent = t('saveFail') + err.message; msg.style.color = 'var(--red)'; }
+  }
+</script>
+</body>
+</html>
